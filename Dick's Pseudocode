@@ -1,0 +1,43 @@
+# Dick's pseudocode for Web Scraper
+# ----------------------------------------
+# Feel free to add notes or build on code, please do not delete old message
+# and leave your new message in ALL CAPS and leave a DATE. Thank you!
+# ----------------------------------------
+# 
+# 
+# First, the developer must install PIP and Beautiful Soup
+# Dev must also use cURL to get and post requests to a URL:
+# 
+# input into the cmd line:
+# curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py 
+# hit enter, then input:
+# python get-pip.py
+# hit enter again. Input 'pip -v' to see if the install worked
+# Install Beautiful Soup, input in cmd line:
+# pip install beautifulsoup4
+# then install requests:
+# pip install requests
+# and consider installing the html5 library:
+# pip install html5lib
+# 
+# 
+# 
+# PSEUDOCODE: 10 Mar, 2023
+# ----------------------------------------
+# 
+# Import Beautiful Soup
+# Import requests
+# 
+# Welcome user (can use recursion while using welcome as a separate function to our program)
+# Fetch url to be scraped "https://realpython.github.io/fake-jobs/" (possible 1/2 of file I/O req't)
+# Send Request to site
+# Save response in an object
+# Print object.content to get raw HTML in str format
+# Parse data using bs4
+# Use prettify() to remove HTML content and make it easier to read
+# Find() for first instance find_all() for all matched
+# find element by id or class name
+# extract text from html element
+# output to CSV file and UI
+# 
+#
