@@ -17,9 +17,16 @@ import linkedin_scraper as scraper
 def main():
     """Main function. Calling functions from other modules."""
 
+    print("This program allows you to web scrape job posts from LinkedIn.")
+    print("Please enter a job or company, then a location to scrape.")
+
     url, job, location = scraper.get_url()
     job_container = scraper.get_job_container(url)
-    generate_csv.write_to_csv(job_container, job, location)
+    file_name = generate_csv.write_to_csv(job_container, job, location)
+    
+    print()
+    print(f"Your web scraped file has been exported as: '{file_name}'")
+    print(f"The data was scraped from this url: {url}")
 
 
 if __name__ == "__main__":

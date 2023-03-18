@@ -29,12 +29,12 @@ def get_url():
     """
 
     # Request user input to use for file_name
-    job_input = input('What kind of job? ').strip().replace(' ', '_')
+    job_input = input('Job/Company: ').strip().replace(' ', '_')
     # Changing to file name format
     job_mod = job_input.replace('_', '%20')
     
     # Request user input to use for file_name
-    location_input = input('What location? ').strip().replace(' ', '_')
+    location_input = input('Location: ').strip().replace(' ', '_')
     # Changing to URL format
     location_mod = location_input.replace('_', '%20')
     
