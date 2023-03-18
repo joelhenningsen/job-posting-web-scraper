@@ -22,7 +22,7 @@ def write_to_csv(job_container):
     """
 
     # Opening file and writing the scraped data to it
-    with open('output/job_scrape.csv', 'w', encoding="utf-8", newline='') as f:
+    with open('output_job_scrape.csv', 'w', encoding="utf-8", newline='') as f:
         # Making a writer through the CSV module
         writer = csv.writer(f)
         writer.writerow(['Job Title', 'Company', 'Location', 'Date Posted'])
