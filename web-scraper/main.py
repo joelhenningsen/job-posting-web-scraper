@@ -15,11 +15,11 @@ import linkedin_scraper as scraper
 
 
 def main():
-    """Main function."""
+    """Main function. Calling functions from other modules."""
 
-    url = scraper.get_url()
+    url, job, location = scraper.get_url()
     job_container = scraper.get_job_container(url)
-    generate_csv.write_to_csv(job_container)
+    generate_csv.write_to_csv(job_container, job, location)
 
 
 if __name__ == "__main__":

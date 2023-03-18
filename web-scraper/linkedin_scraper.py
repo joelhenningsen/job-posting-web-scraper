@@ -20,19 +20,29 @@ from bs4 import BeautifulSoup
 def get_url():
     """Get URL of a LinkedIn page to be scraped.
     
-        Returns:
+    Returns:
         url (str): LinkedIn URL to be scraped.
+        job_input (str): The job input in a format that can be inserted into 
+            the output file name.
+        location_input (str): The location input in a format that can be 
+            inserted into the output file name.
     """
 
-    # Request user input
-    location = input('What location? ')
-    job_input = input('What kind of job? ')
-    job_keyword = job_input.replace(' ', '%20')
+    # Request user input to use for file_name
+    job_input = input('What kind of job? ').strip().replace(' ', '_')
+    # Changing to file name format
+    job_mod = job_input.replace('_', '%20')
+    
+    # Request user input to use for file_name
+    location_input = input('What location? ').strip().replace(' ', '_')
+    # Changing to URL format
+    location_mod = location_input.replace('_', '%20')
+    
     # URL of the LinkedIn page to be scraped
     url = (f'https://www.linkedin.com/jobs/search?'
-        f'keywords={job_keyword}&location={location}')
+        f'keywords={job_mod}&location={location_mod}')
 
-    return url
+    return url, job_input, location_input
 
 
 def get_job_container(url):
