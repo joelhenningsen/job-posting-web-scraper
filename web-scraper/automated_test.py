@@ -49,6 +49,7 @@ def main():
     testing('<','')
     testing('>','')
     testing('|', '')
+    testing('Chegg','San Fransisco')
     
 if __name__ == "__main__":
     main()
