@@ -36,14 +36,14 @@ def get_url(job_input, location_input):
     # Format user input job keyword to use for file_name
     job = job_input.strip().replace(' ', '_').replace('\\', '').replace\
         ('/', '').replace(':','').replace('*', '').replace('?', '')\
-            .replace('"', '').replace('<','').replace('>','')
+            .replace('"', '').replace('<','').replace('>','').replace('|', '')
     # Changing to file name format
     job_mod = job.replace('_', '%20')
     
     # Format user input location keyword to use for file_name
     location = location_input.strip().replace(' ', '_').replace('\\', '')\
         .replace('/', '').replace(':','').replace('*', '').replace('?', '')\
-            .replace('"', '').replace('<','').replace('>','')
+            .replace('"', '').replace('<','').replace('>','').replace('|', '')
     # Changing to URL format
     location_mod = location.replace('_', '%20')
     
