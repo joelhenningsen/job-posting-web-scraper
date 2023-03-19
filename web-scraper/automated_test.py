@@ -37,7 +37,7 @@ def main():
     testing('software developer', 'portland or')
     testing('retail', 'oregon')
     testing('accountant', 'mexico')
-        testing('','korea')
+    testing('','korea')
     testing('dogwalker','')
     testing('','')
     testing('/','') # Breaks code PermissionError: [Errno 13] Permission denied: '/__scrape.csv'
