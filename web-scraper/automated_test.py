@@ -37,6 +37,16 @@ def main():
     testing('software developer', 'portland or')
     testing('retail', 'oregon')
     testing('accountant', 'mexico')
-
+        testing('','korea')
+    testing('dogwalker','')
+    testing('','')
+    testing('/','') # Breaks code PermissionError: [Errno 13] Permission denied: '/__scrape.csv'
+    testing('\\', '') # Breaks code PermissionError: [Errno 13] Permission denied: '\\__scrape.csv'
+    testing(':','') # This says it writes a file, but does not
+    testing('*', '') # Breaks code OSError: [Errno 22] Invalid argument: '*__scrape.csv'
+    testing('?','') # Breaks code OSError: [Errno 22] Invalid argument: '?__scrape.csv'
+    testing('"','') # Breaks code OSError: [Errno 22] Invalid argument: '"__scrape.csv'
+    testing('<','') # Fixed
+    testing('>','') # Fixed
 if __name__ == "__main__":
     main()
