@@ -17,32 +17,37 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def get_url():
+def get_url(job_input, location_input):
     """Get URL of a LinkedIn page to be scraped.
     
+    Args:
+        job_input (str): User-input job keyword to search on LinkedIn.
+        location_input (str): User-input location keyword to search \
+            on LinkedIn.
+
     Returns:
         url (str): LinkedIn URL to be scraped.
-        job_input (str): The job input in a format that can be inserted into 
-            the output file name.
+        job_input (str): The job input in a format that can be \
+            inserted into the output file name.
         location_input (str): The location input in a format that can be 
             inserted into the output file name.
     """
 
-    # Request user input to use for file_name
-    job_input = input('Job/Company: ').strip().replace(' ', '_')
+    # Format user input job keyword to use for file_name
+    job = job_input.strip().replace(' ', '_')
     # Changing to file name format
-    job_mod = job_input.replace('_', '%20')
+    job_mod = job.replace('_', '%20')
     
-    # Request user input to use for file_name
-    location_input = input('Location: ').strip().replace(' ', '_')
+    # Format user input location keyword to use for file_name
+    location = location_input.strip().replace(' ', '_')
     # Changing to URL format
-    location_mod = location_input.replace('_', '%20')
+    location_mod = location.replace('_', '%20')
     
     # URL of the LinkedIn page to be scraped
     url = (f'https://www.linkedin.com/jobs/search?'
         f'keywords={job_mod}&location={location_mod}')
 
-    return url, job_input, location_input
+    return url, job, location
 
 
 def get_job_container(url):

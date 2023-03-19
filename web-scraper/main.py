@@ -20,11 +20,13 @@ def main():
     print("This program allows you to web scrape job posts from LinkedIn.")
     print("Please enter a job or company, then a location to scrape.")
 
-    url, job, location = scraper.get_url()
+    job_input = input('Job/Company: ')
+    location_input = input('Location: ')
+
+    url, job, location = scraper.get_url(job_input, location_input)
     job_container = scraper.get_job_container(url)
     file_name = generate_csv.write_to_csv(job_container, job, location)
     
-    print()
     print(f"Your web scraped file has been exported as: '{file_name}'")
     print(f"The data was scraped from this url: {url}")
 
