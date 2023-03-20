@@ -22,26 +22,13 @@ def get_input():
     to scrape for on LinkedIn.
     
     Returns:
-        job_input (str): A string of only alphanumeric characters or a space 
-        entered by the user for the job/company they want to search.
-        location_input (str): A string of only alphanumeric characters or a 
-        space entered by the user for the location they want to search.
+        job_input (str): User-input job keyword to search on LinkedIn.
+        location_input (str): User-input location keyword to search \
+            on LinkedIn.
     """
-    # Looping for valid inputs
-    while True:
-        job_input = input('Job/Company: ').lower()
-        if job_input.isalnum() or " " in job_input:
-            break
-        else:
-            print("Sorry, your input is invalid. Only alphanumeric characters "
-                  "are allowed.")
-    while True:
-        location_input = input('Location: ').lower()
-        if location_input.isalnum() or " " in location_input:
-            break
-        else:
-            print("Sorry, your input is invalid. Only alphanumeric characters "
-                  "are allowed.")
+    
+    job_input = input('Job/Company: ').lower()
+    location_input = input('Location: ').lower()
     
     return job_input, location_input
 
