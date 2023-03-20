@@ -28,14 +28,14 @@ def get_input():
     """
     # Looping for valid inputs
     while True:
-        job_input = input('Job/Company: ')
+        job_input = input('Job/Company: ').lower()
         if job_input.isalnum() or " " in job_input:
             break
         else:
             print("Sorry, your input is invalid. Only alphanumeric characters "
                   "are allowed.")
     while True:
-        location_input = input('Location: ')
+        location_input = input('Location: ').lower()
         if location_input.isalnum() or " " in location_input:
             break
         else:
@@ -43,6 +43,7 @@ def get_input():
                   "are allowed.")
     
     return job_input, location_input
+
 
 def get_url(job_input, location_input):
     """Get URL of a LinkedIn page to be scraped.
@@ -54,10 +55,10 @@ def get_url(job_input, location_input):
 
     Returns:
         url (str): LinkedIn URL to be scraped.
-        job_input (str): The job input in a format that can be \
-            inserted into the output file name.
-        location_input (str): The location input in a format that can be 
-            inserted into the output file name.
+        job (str): The job input in a format that can be inserted into the \
+            output file name.
+        location (str): The location input in a format that can be inserted \
+            into the output file name.
     """
 
     # Format user input job keyword to use for file_name
@@ -165,16 +166,31 @@ def get_info(job_container):
     # Iterating over all job posts and stripping the information
     for job_post in job_container.find_all\
         ('div', {'class': 'base-search-card__info'}):
-        job_title = job_post.find\
-            ('h3', {'class': 'base-search-card__title'})\
-                .get_text().strip()
-        company_name = job_post.find\
-            ('h4', {'class': 'base-search-card__subtitle'})\
-                .get_text().strip()
-        location = job_post.find\
-            ('span', {'class': 'job-search-card__location'})\
-                .get_text().strip()
-        date_posted = get_date_posted(job_post)
+        try:
+            job_title = job_post.find\
+                ('h3', {'class': 'base-search-card__title'})\
+                    .get_text().strip()
+        except AttributeError:
+            return 'not found'
+        
+        try:
+            company_name = job_post.find\
+                ('h4', {'class': 'base-search-card__subtitle'})\
+                    .get_text().strip()
+        except AttributeError:
+            return 'not found'
+        
+        try:
+            location = job_post.find\
+                ('span', {'class': 'job-search-card__location'})\
+                    .get_text().strip()
+        except AttributeError:
+            return 'not found'
+        
+        try:
+            date_posted = get_date_posted(job_post)
+        except AttributeError:
+            return 'not found'
 
         # Store all job info in list to be written to csv later
         all_jobs_info.append([job_title, company_name, location, date_posted])
