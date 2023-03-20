@@ -16,6 +16,23 @@ returning job titles, company names, locations, and dates posted.
 import requests
 from bs4 import BeautifulSoup
 
+def get_input():
+    while True:
+        job_input = input('Job/Company: ')
+        if job_input.isalnum() or " " in job_input:
+            break
+        else:
+            print("Sorry, your input is invalid. Only alphanumeric characters "
+                  "are allowed.")
+    while True:
+        location_input = input('Location: ')
+        if location_input.isalnum() or " " in location_input:
+            break
+        else:
+            print("Sorry, your input is invalid. Only alphanumeric characters "
+                  "are allowed.")
+    
+    return job_input, location_input
 
 def get_url(job_input, location_input):
     """Get URL of a LinkedIn page to be scraped.
