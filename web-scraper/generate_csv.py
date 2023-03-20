@@ -29,13 +29,14 @@ def write_to_csv(job_container, job, location):
     output_dir = Path('output')
     file_name = output_dir / f"{job}_{location}_scrape.csv"
 
-    # Create the output directory if it doesn't already exist
+    # Creating 'output' dir if it doesn't already exist
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # Opening file and writing the scraped data to it
     with open(file_name, 'w', encoding="utf-8", newline='') as f:
         # Making a writer through the CSV module
         writer = csv.writer(f)
+        # Creating the column headers
         writer.writerow(['Job Title', 'Company', 'Location', 'Date Posted'])
 
         # Use writer to put all scraped data into a CSV file

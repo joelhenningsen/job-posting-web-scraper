@@ -17,6 +17,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
+
 def get_input():
     """Gets the the user's input on the job/company and the location they want 
     to scrape for on LinkedIn.
@@ -26,7 +27,7 @@ def get_input():
         location_input (str): User-input location keyword to search \
             on LinkedIn.
     """
-    
+    # Made lowercase for continuity
     job_input = input('Job/Company: ').lower()
     location_input = input('Location: ').lower()
     
@@ -90,7 +91,7 @@ def get_job_container(url):
     # Assinging the container element where the list of jobs is located
     job_container = soup.find('section', {'class': 'two-pane-serp-page__results-list'})
     
-    # If the job_container doesn't exist, check for a different class
+    # If the job_container doesn't exist, check for the backup class
     if job_container is None:
         job_container = soup.find('ul', {'class': 'jobs-search__results-list'})
     
@@ -110,7 +111,7 @@ def get_date_posted(job_post):
             either class searched.
     """
 
-    # First class to try
+    # First class to try - new job posts
     try:
         date_posted = job_post.find\
             ('time', {'class': 'job-search-card__listdate--new'})\
@@ -119,13 +120,13 @@ def get_date_posted(job_post):
 
     # Go to the 'fallback class' if date_posted returns AttributeError
     except AttributeError:
-        # Checking this class for a value
+        # Second class to try - older job posts
         try:
             date_posted = job_post.find\
                 ('time', {'class': 'job-search-card__listdate'})\
                     .get_text().strip()
             return date_posted
-        # If both classes fail to find data, put 'not found' instead.
+        # If both classes fail to find data, return 'not found' instead
         except AttributeError:
             return 'not found'
 

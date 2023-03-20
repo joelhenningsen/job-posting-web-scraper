@@ -15,11 +15,12 @@ import linkedin_scraper as scraper
 
 
 def main():
-    """Main function. Calling functions from other modules."""
+    """Main function. Calls various functions from other modules."""
 
     print("This program allows you to web scrape job posts from LinkedIn.")
     print("Please enter a job or company, then a location to scrape.")
 
+    # Calling functions from linkedin_scraper and generate_csv modules
     job_input, location_input = scraper.get_input()
     url, job, location = scraper.get_url(job_input, location_input)
     job_container = scraper.get_job_container(url)
