@@ -26,7 +26,7 @@ def main():
     file_name = generate_csv.write_to_csv(job_container, job, location)
     
     print(f"Your web scraped file has been exported as: '{file_name}'")
-    print(f"The data was scraped from this url: {url}")
+    print(f"The data was scraped from this URL: {url}")
 
 
 if __name__ == "__main__":

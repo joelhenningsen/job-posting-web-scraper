@@ -17,6 +17,16 @@ import requests
 from bs4 import BeautifulSoup
 
 def get_input():
+    """Gets the the user's input on the job/company and the location they want 
+    to scrape for on LinkedIn.
+    
+    Returns:
+        job_input (str): A string of only alphanumeric characters or a space 
+        entered by the user for the job/company they want to search.
+        location_input (str): A string of only alphanumeric characters or a 
+        space entered by the user for the location they want to search.
+    """
+    # Looping for valid inputs
     while True:
         job_input = input('Job/Company: ')
         if job_input.isalnum() or " " in job_input:
@@ -87,12 +97,17 @@ def get_job_container(url):
     response = requests.get(url, headers)
     # Making an object using BeautifulSoup class
     soup = BeautifulSoup(response.content, 'html.parser')
+    
     # Assinging the container element where the list of jobs is located
-    job_container = soup.find\
-        ('section', {'class': 'two-pane-serp-page__results-list'})
+    job_container = soup.find('section', {'class': 'two-pane-serp-page__results-list'})
+    
+    # If the job_container doesn't exist, check for a different class
+    if job_container is None:
+        job_container = soup.find('ul', {'class': 'jobs-search__results-list'})
+    
     # Return result to function
     return job_container
-
+    
 
 def get_date_posted(job_post):
     """Check two HTML classes for date listing was posted to LinkedIn.
@@ -140,6 +155,13 @@ def get_info(job_container):
 
     # Initialize the list to store all the jobs
     all_jobs_info = []
+
+    # Checking if job_container couldn't be found
+    if job_container is None:
+        print("Error: no job container found.")
+        # Return an empty list
+        return all_jobs_info
+    
     # Iterating over all job posts and stripping the information
     for job_post in job_container.find_all\
         ('div', {'class': 'base-search-card__info'}):
